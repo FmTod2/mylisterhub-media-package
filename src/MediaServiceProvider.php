@@ -2,7 +2,6 @@
 
 namespace MyListerHub\Media;
 
-use MyListerHub\Media\Commands\MediaCommand;
 use Spatie\LaravelPackageTools\Package;
 use Spatie\LaravelPackageTools\PackageServiceProvider;
 
