@@ -17,6 +17,7 @@ class MediaServiceProvider extends PackageServiceProvider
         $package
             ->name('media')
             ->hasConfigFile()
+            ->hasAssets()
             ->hasMigration('create_videos_table')
             ->hasMigration('create_videoables_table');
     }

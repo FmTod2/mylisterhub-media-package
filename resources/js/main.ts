@@ -8,5 +8,5 @@ MediaModel.$http = axios
 export default {
     Image,
     Video,
-    MediaModel: MediaModel,
+    MediaModel,
 }
