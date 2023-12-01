@@ -18,8 +18,10 @@
     ],
     "require": {
         "php": "^8.1",
+        "illuminate/contracts": "^10.0",
+        "mylisterhub/api": "^1.0",
         "spatie/laravel-package-tools": "^1.14.0",
-        "illuminate/contracts": "^10.0"
+        "spatie/laravel-query-builder": "^5.6"
     },
     "require-dev": {
         "laravel/pint": "^1.0",
@@ -71,5 +73,11 @@
         }
     },
     "minimum-stability": "dev",
-    "prefer-stable": true
+    "prefer-stable": true,
+    "repositories": [
+        {
+            "type": "vcs",
+            "url": "https://github.com/FmTod/mylisterhub-api-package"
+        }
+    ]
 }

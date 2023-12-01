@@ -9,5 +9,9 @@
     "@semantic-release/github": "^9.0.3",
     "husky": "^8.0.3",
     "semantic-release": "^21.0.7"
+  },
+  "dependencies": {
+    "axios": "^1.6.2",
+    "vue-api-query": "^1.11.0"
   }
 }
