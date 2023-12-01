@@ -1,17 +1,18 @@
 {
-    "name": ":vendor_slug/:package_slug",
-    "description": ":package_description",
+    "name": "mylisterhub/media",
+    "description": "Media management package for MyListerHub",
     "keywords": [
-        ":vendor_name",
+        "FmTod",
+        "MyListerHub",
         "laravel",
-        ":package_slug"
+        "media"
     ],
-    "homepage": "https://github.com/:vendor_slug/:package_slug",
+    "homepage": "https://github.com/FmTod/mylisterhub-media-package",
     "license": "MIT",
     "authors": [
         {
-            "name": ":author_name",
-            "email": "author@domain.com",
+            "name": "Victor R",
+            "email": "39545521+viicslen@users.noreply.github.com",
             "role": "Developer"
         }
     ],
@@ -36,13 +37,13 @@
     },
     "autoload": {
         "psr-4": {
-            "VendorName\\Skeleton\\": "src/",
-            "VendorName\\Skeleton\\Database\\Factories\\": "database/factories/"
+            "MyListerHub\\Media\\": "src/",
+            "MyListerHub\\Media\\Database\\Factories\\": "database/factories/"
         }
     },
     "autoload-dev": {
         "psr-4": {
-            "VendorName\\Skeleton\\Tests\\": "tests/"
+            "FmTod\\Media\\Tests\\": "tests/"
         }
     },
     "scripts": {
@@ -62,10 +63,10 @@
     "extra": {
         "laravel": {
             "providers": [
-                "VendorName\\Skeleton\\SkeletonServiceProvider"
+                "MyListerHub\\Media\\MediaServiceProvider"
             ],
             "aliases": {
-                "Skeleton": "VendorName\\Skeleton\\Facades\\Skeleton"
+                "Media": "MyListerHub\\Media\\Facades\\Media"
             }
         }
     },

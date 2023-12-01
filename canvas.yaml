@@ -1,6 +1,6 @@
 preset: package
 
-namespace: VendorName\Skeleton
+namespace: MyListerHub\Media
 user-auth-provider: App\User
 
 paths:
@@ -15,13 +15,13 @@ migration:
   prefix: ''
 
 console:
-  namespace: VendorName\Skeleton\Console
+  namespace: MyListerHub\Media\Console
 
 model:
-  namespace: VendorName\Skeleton\Models
+  namespace: MyListerHub\Media\Models
 
 provider:
-  namespace: VendorName\Skeleton
+  namespace: MyListerHub\Media
 
 testing:
-  namespace: VendorName\Skeleton\Tests
+  namespace: MyListerHub\Media\Tests

@@ -1,12 +1,12 @@
 <?php
 
-namespace VendorName\Skeleton\Commands;
+namespace MyListerHub\Media\Commands;
 
 use Illuminate\Console\Command;
 
-class SkeletonCommand extends Command
+class MediaCommand extends Command
 {
-    public $signature = 'skeleton';
+    public $signature = 'media';
 
     public $description = 'My command';
 
