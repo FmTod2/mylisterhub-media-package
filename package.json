@@ -1,16 +1,16 @@
 {
     "name": "mylisterhub-media",
     "type": "module",
-    "files": ["resources/dist"],
+    "files": ["dist"],
     "source": "resources/js/main.ts",
-    "main": "./resources/dist/index.cjs",
-    "module": "./resources/dist/index.module.js",
-    "unpkg": "./resources/dist/index.umd.js",
+    "main": "./dist/index.cjs",
+    "module": "./dist/index.module.js",
+    "unpkg": "./dist/index.umd.js",
     "exports": {
-        "require": "./resources/dist/index.cjs",
-        "default": "./resources/dist/index.modern.js"
+        "require": "./dist/index.cjs",
+        "default": "./dist/index.modern.js"
     },
-    "types": "resources/dist/index.d.ts",
+    "types": "dist/main.d.ts",
     "scripts": {
         "build": "microbundle",
         "dev": "microbundle watch"
