@@ -2,6 +2,8 @@
 
 namespace MyListerHub\Media;
 
+use MyListerHub\Media\Models\Image;
+use MyListerHub\Media\Observers\ImageObserver;
 use Spatie\LaravelPackageTools\Package;
 use Spatie\LaravelPackageTools\PackageServiceProvider;
 
@@ -17,7 +19,13 @@ class MediaServiceProvider extends PackageServiceProvider
         $package
             ->name('media')
             ->hasConfigFile()
+            ->hasRoute('media')
             ->hasMigration('create_videos_table')
             ->hasMigration('create_videoables_table');
+    }
+
+    public function packageBooted(): void
+    {
+        Image::observe(ImageObserver::class);
     }
 }

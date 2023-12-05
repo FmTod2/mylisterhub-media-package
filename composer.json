@@ -20,6 +20,8 @@
         "php": "^8.1",
         "illuminate/contracts": "^10.0",
         "mylisterhub/api": "^1.0",
+        "rahulhaque/laravel-filepond": "^10.0",
+        "spatie/image": "^2.2",
         "spatie/laravel-package-tools": "^1.14.0",
         "spatie/laravel-query-builder": "^5.6"
     },
@@ -35,7 +37,8 @@
         "phpstan/extension-installer": "^1.1",
         "phpstan/phpstan-deprecation-rules": "^1.0",
         "phpstan/phpstan-phpunit": "^1.0",
-        "spatie/laravel-ray": "^1.26"
+        "spatie/laravel-ray": "^1.26",
+        "tightenco/duster": "^2.6"
     },
     "autoload": {
         "psr-4": {
@@ -53,7 +56,8 @@
         "analyse": "vendor/bin/phpstan analyse",
         "test": "vendor/bin/pest",
         "test-coverage": "vendor/bin/pest --coverage",
-        "format": "vendor/bin/pint"
+        "format": "vendor/bin/pint",
+        "canvas": "vendor/bin/canvas"
     },
     "config": {
         "sort-packages": true,

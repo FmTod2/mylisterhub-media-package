@@ -11,16 +11,17 @@ class Video extends Model
     use HasFactory;
 
     /**
-     * The attributes that aren't mass assignable.
-     *
-     * @var string[]|bool
+     * The attributes that are mass assignable.
      */
-    protected $guarded = [
-        'id',
-        'created_at',
-        'updated_at',
+    protected $fillable = [
+        'name',
+        'path',
+        'url',
     ];
 
+    /**
+     * Create a new factory instance for the model.
+     */
     public static function newFactory(): VideoFactory
     {
         return new VideoFactory;

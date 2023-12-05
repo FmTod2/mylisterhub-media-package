@@ -2,9 +2,11 @@
 
 namespace MyListerHub\Media\Models;
 
+use Exception;
 use Illuminate\Database\Eloquent\Casts\Attribute;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Http\File;
 use Illuminate\Http\UploadedFile;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Str;
@@ -16,14 +18,13 @@ class Image extends Model
     use HasFactory;
 
     /**
-     * The attributes that aren't mass assignable.
-     *
-     * @var string[]|bool
+     * The attributes that are mass assignable.
      */
-    protected $guarded = [
-        'id',
-        'created_at',
-        'updated_at',
+    protected $fillable = [
+        'name',
+        'source',
+        'width',
+        'height',
     ];
 
     /**
@@ -33,33 +34,75 @@ class Image extends Model
      */
     protected $appends = [
         'url',
-        'size',
-        'name',
     ];
 
-    public static function booted(): void
+    public static function createFromFile(UploadedFile|File $file, string $name = null, string $disk = null): static
     {
-        static::saving(function (Image $image) {
-            $path = config('tenancy.filesystem.images.public', 'images');
+        $path = config('media.storage.images.path', 'media/images');
+        $image = \Spatie\Image\Image::load($file);
 
-            if (Str::contains($image->source, ['https://', 'http://'])) {
-                return;
+        if (is_null($name) || $name === '') {
+            $name = sprintf('%s_%s', now()->getTimestamp(), $file->getClientOriginalExtension());
+        }
+
+        if (is_null($disk)) {
+            $disk = (string) config('media.storage.images.disk', 'public');
+        }
+
+        Storage::disk($disk)->putFileAs($path, $file, $name);
+
+        return static::create([
+            'source' => $name,
+            'name' => $name,
+            'width' => $image->getWidth(),
+            'height' => $image->getHeight(),
+        ]);
+    }
+
+    public static function createFromUrl(string $url, string $name = null, bool $upload = false, string $disk = null): static
+    {
+        $path = config('media.storage.images.path', 'media/images');
+
+        if (is_null($disk)) {
+            $disk = (string) config('media.storage.images.disk', 'public');
+        }
+
+        if (is_null($name) || $name === '') {
+            $name = (string) Str::of($url)
+                ->afterLast('/')
+                ->before('?')
+                ->trim()
+                ->prepend('_')
+                ->prepend(now()->getTimestamp());
+
+            throw_if(! $name, InvalidArgumentException::class, 'Could not guess the name of the image. Please provide a filename.');
+        }
+
+        try {
+            $file = file_get_contents($url);
+
+            if ($upload) {
+                Storage::disk($disk)->put("{$path}/{$name}", $file);
             }
 
-            if (isset($image->width, $image->height) || ! Storage::tenant('public')->exists("$path/$image->name")) {
-                return;
-            }
+            $image = \Spatie\Image\Image::load($file);
 
-            try {
-                $details = \Image::make(Storage::tenant('public')->get("$path/$image->name"));
+            return static::create([
+                'name' => $name,
+                'source' => $upload ? $name : $url,
+                'width' => $image->getWidth(),
+                'height' => $image->getHeight(),
+            ]);
+        } catch (Exception $exception) {
+            throw_if($upload, $exception);
 
-                $image->update([
-                    'width' => $details->width(),
-                    'height' => $details->height(),
-                ]);
-            } catch (\Exception $exception) {
-            }
-        });
+            return static::create([
+                'name' => $name,
+                'source' => $url,
+                'width' => null,
+                'height' => null,
+            ]);
+        }
     }
 
     protected function name(): Attribute
@@ -78,29 +121,31 @@ class Image extends Model
                 return '';
             }
 
-            if (Str::contains($this->source, ['https://', 'http://'])) {
+            if (Str::isMatch('/http(s)?:\/\//', $this->source)) {
                 return $this->source;
             }
 
-            $path = config('tenancy.filesystem.images.public', 'images');
+            $path = config('media.storage.images.path', 'media/images');
+            $disk = config('media.storage.images.disk', 'public');
 
-            return Storage::tenant('public')->tenantUrl("$path/$this->source");
+            return Storage::disk($disk)->tenantUrl("{$path}/{$this->source}");
         });
     }
 
     protected function size(): Attribute
     {
         return Attribute::get(function (): int {
-            $imagesPath = config('tenancy.filesystem.images.public', 'images');
+            $path = config('media.storage.images.path', 'media/images');
+            $disk = config('media.storage.images.disk', 'public');
 
-            $path = "$imagesPath/$this->name";
+            $filePath = "{$path}/{$this->name}";
 
-            if (Str::contains($this->source, ['https://', 'http://'])) {
+            if (Str::isMatch('/http(s)?:\/\//', $this->source)) {
                 return 0;
             }
 
             try {
-                $exist = Storage::tenant('public')->fileExists($path);
+                $exist = Storage::disk($disk)->exists($filePath);
             } catch (UnableToCheckFileExistence) {
                 $exist = false;
             }
@@ -109,53 +154,7 @@ class Image extends Model
                 return 0;
             }
 
-            return Storage::tenant('public')->fileSize($path);
+            return Storage::disk($disk)->fileSize($filePath);
         });
-    }
-
-    public static function createFromFile(UploadedFile|\Illuminate\Http\File $file, bool $public = true): static
-    {
-        $path = config('tenancy.filesystem.images.public', 'images');
-        $name = $file->getClientOriginalName();
-
-        Storage::tenant($public ? 'public' : 'private')->putFileAs($path, $file, $name);
-
-        $size = getimagesize($file->path());
-
-        return static::create([
-            'source' => $name,
-            'name' => $name,
-            'width' => $size[0],
-            'height' => $size[1],
-        ]);
-    }
-
-    public static function createFromUrl(string $url, bool $upload = false, bool $public = true): static
-    {
-        $path = config('tenancy.filesystem.images.public', 'images');
-        $name = (string) Str::of($url)->afterLast('/')->before('?')->trim();
-
-        throw_if(! $name, InvalidArgumentException::class, 'Could not guess the name of the image. Please provide a filename.');
-
-        try {
-            $file = file_get_contents($url);
-
-            if ($upload) {
-                Storage::tenant($public ? 'public' : 'private')->put("$path/$name", $file);
-            }
-        } catch (\Exception $exception) {
-            throw_if($upload, $exception);
-
-            $file = null;
-        }
-
-        $details = $file ? \Image::make($file) : null;
-
-        return static::create([
-            'name' => $name,
-            'source' => $upload ? $name : $url,
-            'width' => $details?->width(),
-            'height' => $details?->height(),
-        ]);
     }
 }
