@@ -5,6 +5,8 @@ namespace MyListerHub\Media\Http\Requests;
 use Illuminate\Foundation\Http\FormRequest;
 use Illuminate\Validation\Rule;
 use Illuminate\Validation\Rules\File;
+use MyListerHub\Media\Rules\FilepondMimes;
+use MyListerHub\Media\Rules\FilepondValid;
 
 class VideoUploadRequest extends FormRequest
 {
@@ -23,11 +25,6 @@ class VideoUploadRequest extends FormRequest
      */
     public function rules(): array
     {
-        $fileRules = [
-            'required',
-            File::types('video/*'),
-        ];
-
         return [
             'type' => [
                 'nullable',
@@ -35,8 +32,8 @@ class VideoUploadRequest extends FormRequest
                 Rule::in(['filepond', 'files']),
             ],
             'files.*' => $this->type() === 'filepond'
-                ? Rule::filepond($fileRules)
-                : $fileRules,
+                ? ['required', new FilepondValid, new FilepondMimes('mp4')]
+                : ['required', File::types('video/*')],
         ];
     }
 

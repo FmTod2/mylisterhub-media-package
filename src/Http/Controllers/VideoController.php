@@ -10,8 +10,10 @@ use MyListerHub\API\Http\Controller;
 use MyListerHub\Media\Http\Requests\VideoRequest;
 use MyListerHub\Media\Http\Requests\VideoUploadRequest;
 use MyListerHub\Media\Http\Resources\VideoResource;
+use MyListerHub\Media\Models\Image;
 use MyListerHub\Media\Models\Video;
 use RahulHaque\Filepond\Facades\Filepond;
+use RahulHaque\Filepond\Models\Filepond as FilepondModel;
 
 class VideoController extends Controller
 {
@@ -25,21 +27,36 @@ class VideoController extends Controller
     {
         $validated = $request->validated();
 
-        /** @var \Illuminate\Http\UploadedFile[] $files */
         $files = $request->type() === 'filepond'
-            ? Filepond::field($validated['files'])->getFile()
+            ? Filepond::field($validated['files'])->getModel()
             : $request->file('files');
 
         $path = config('media.storage.videos.path');
         $disk = config('media.storage.videos.disk');
 
-        $images = collect($files)->map(fn (UploadedFile $file) => Video::create([
-            'name' => $file->getClientOriginalName(),
-            'path' => $file->store($path, $disk),
-            'disk' => $disk,
-            'url' => Storage::disk($disk)->url($path),
-        ]));
+        $videos = collect($files)->map(function (UploadedFile|FilepondModel $file) use ($path, $disk) {
+            if ($file instanceof FilepondModel) {
+                $content = Storage::disk(Filepond::getTempDisk())->get($file->filepath);
+                $name = sprintf('%s_%s', now()->getTimestamp(), $file->filename);
 
-        return $this->response($images);
+                Storage::disk($disk)->put("{$path}/{$name}", $content);
+
+                Storage::disk(Filepond::getTempDisk())->delete($file->filepath);
+                $file->delete();
+            } else {
+                $name = sprintf('%s_%s', now()->getTimestamp(), $file->getClientOriginalName());
+
+                $file->storeAs($path, $name, $disk);
+            }
+
+            return Video::create([
+                'name' => $name,
+                'path' => "{$path}/{$name}",
+                'disk' => $disk,
+                'url' => Storage::disk($disk)->url("{$path}/{$name}"),
+            ]);
+        });
+
+        return $this->response($videos);
     }
 }

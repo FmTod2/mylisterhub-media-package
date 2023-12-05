@@ -12,6 +12,7 @@ use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Str;
 use InvalidArgumentException;
 use League\Flysystem\UnableToCheckFileExistence;
+use MyListerHub\Media\Database\Factories\ImageFactory;
 
 class Image extends Model
 {
@@ -156,5 +157,10 @@ class Image extends Model
 
             return Storage::disk($disk)->fileSize($filePath);
         });
+    }
+
+    public static function newFactory(): ImageFactory
+    {
+        return new ImageFactory;
     }
 }

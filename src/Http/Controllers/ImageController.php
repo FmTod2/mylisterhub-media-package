@@ -26,7 +26,6 @@ class ImageController extends Controller
     {
         $validated = $request->validated();
 
-        /** @var \Illuminate\Http\UploadedFile[] $files */
         $files = $request->type() === 'filepond'
             ? Filepond::field($validated['files'])->getModel()
             : $request->file('files');
