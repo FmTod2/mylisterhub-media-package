@@ -29,7 +29,7 @@ class VideoUploadRequest extends FormRequest
         ];
 
         return [
-            '_type' => [
+            'type' => [
                 'nullable',
                 'sometimes',
                 Rule::in(['filepond', 'files']),
