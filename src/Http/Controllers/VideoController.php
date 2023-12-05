@@ -10,7 +10,6 @@ use MyListerHub\API\Http\Controller;
 use MyListerHub\Media\Http\Requests\VideoRequest;
 use MyListerHub\Media\Http\Requests\VideoUploadRequest;
 use MyListerHub\Media\Http\Resources\VideoResource;
-use MyListerHub\Media\Models\Image;
 use MyListerHub\Media\Models\Video;
 use RahulHaque\Filepond\Facades\Filepond;
 use RahulHaque\Filepond\Models\Filepond as FilepondModel;

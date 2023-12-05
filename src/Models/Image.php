@@ -106,6 +106,11 @@ class Image extends Model
         }
     }
 
+    public static function newFactory(): ImageFactory
+    {
+        return new ImageFactory;
+    }
+
     protected function name(): Attribute
     {
         return Attribute::get(
@@ -157,10 +162,5 @@ class Image extends Model
 
             return Storage::disk($disk)->fileSize($filePath);
         });
-    }
-
-    public static function newFactory(): ImageFactory
-    {
-        return new ImageFactory;
     }
 }
