@@ -37,6 +37,70 @@ class Image extends Model
         'url',
     ];
 
+    protected function name(): Attribute
+    {
+        return Attribute::get(
+            fn ($value, $attributes) => empty($attributes['name'])
+                ? Str::before(Str::afterLast($this->source, '/'), '?')
+                : $attributes['name'],
+        );
+    }
+
+    protected function url(): Attribute
+    {
+        return Attribute::get(function ($value, $attributes) {
+            if (! isset($attributes['source'])) {
+                return '';
+            }
+
+            if (Str::isMatch('/http(s)?:\/\//', $this->source)) {
+                return $this->source;
+            }
+
+            $path = config('media.storage.images.path', 'media/images');
+            $disk = config('media.storage.images.disk', 'public');
+
+            return Storage::disk($disk)->url("{$path}/{$this->source}");
+        });
+    }
+
+    protected function size(): Attribute
+    {
+        return Attribute::get(function (): int {
+            $path = config('media.storage.images.path', 'media/images');
+            $disk = config('media.storage.images.disk', 'public');
+
+            $filePath = "{$path}/{$this->name}";
+
+            if (Str::isMatch('/http(s)?:\/\//', $this->source)) {
+                return 0;
+            }
+
+            try {
+                $exist = Storage::disk($disk)->exists($filePath);
+            } catch (UnableToCheckFileExistence) {
+                $exist = false;
+            }
+
+            if (! $exist) {
+                return 0;
+            }
+
+            return Storage::disk($disk)->fileSize($filePath);
+        });
+    }
+
+    /**
+     * Create a new factory instance for the model.
+     */
+    public static function newFactory(): ImageFactory
+    {
+        return new ImageFactory;
+    }
+
+    /**
+     * Create a new image from a file.
+     */
     public static function createFromFile(UploadedFile|File $file, string $name = null, string $disk = null): static
     {
         $path = config('media.storage.images.path', 'media/images');
@@ -60,6 +124,9 @@ class Image extends Model
         ]);
     }
 
+    /**
+     * Create a new image from an url.
+     */
     public static function createFromUrl(string $url, string $name = null, bool $upload = false, string $disk = null): static
     {
         $path = config('media.storage.images.path', 'media/images');
@@ -104,63 +171,5 @@ class Image extends Model
                 'height' => null,
             ]);
         }
-    }
-
-    public static function newFactory(): ImageFactory
-    {
-        return new ImageFactory;
-    }
-
-    protected function name(): Attribute
-    {
-        return Attribute::get(
-            fn ($value, $attributes) => empty($attributes['name'])
-                ? Str::before(Str::afterLast($this->source, '/'), '?')
-                : $attributes['name'],
-        );
-    }
-
-    protected function url(): Attribute
-    {
-        return Attribute::get(function ($value, $attributes) {
-            if (! isset($attributes['source'])) {
-                return '';
-            }
-
-            if (Str::isMatch('/http(s)?:\/\//', $this->source)) {
-                return $this->source;
-            }
-
-            $path = config('media.storage.images.path', 'media/images');
-            $disk = config('media.storage.images.disk', 'public');
-
-            return Storage::disk($disk)->tenantUrl("{$path}/{$this->source}");
-        });
-    }
-
-    protected function size(): Attribute
-    {
-        return Attribute::get(function (): int {
-            $path = config('media.storage.images.path', 'media/images');
-            $disk = config('media.storage.images.disk', 'public');
-
-            $filePath = "{$path}/{$this->name}";
-
-            if (Str::isMatch('/http(s)?:\/\//', $this->source)) {
-                return 0;
-            }
-
-            try {
-                $exist = Storage::disk($disk)->exists($filePath);
-            } catch (UnableToCheckFileExistence) {
-                $exist = false;
-            }
-
-            if (! $exist) {
-                return 0;
-            }
-
-            return Storage::disk($disk)->fileSize($filePath);
-        });
     }
 }
