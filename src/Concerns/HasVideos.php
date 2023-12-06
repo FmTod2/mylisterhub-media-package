@@ -61,7 +61,6 @@ trait HasVideos
                 if (is_array($videoData)) {
                     $video = match (true) {
                         isset($videoData['id']) => Video::find($videoData['id']),
-                        isset($videoData['source']) => Video::updateOrCreate(['source' => $videoData['source']], $videoData),
                         isset($videoData['url']) => Video::createFromUrl($videoData['url']),
                         default => null,
                     };
@@ -70,7 +69,9 @@ trait HasVideos
                         return null;
                     }
 
-                    return [$video->id => ['order' => $videoData['order'] ?? $index]];
+                    return [$video->id => [
+                        'order' => $videoData['pivot']['order'] ?? $index,
+                    ]];
                 }
 
                 return null;
