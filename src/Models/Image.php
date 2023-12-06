@@ -37,59 +37,6 @@ class Image extends Model
         'url',
     ];
 
-    protected function name(): Attribute
-    {
-        return Attribute::get(
-            fn ($value, $attributes) => empty($attributes['name'])
-                ? Str::before(Str::afterLast($this->source, '/'), '?')
-                : $attributes['name'],
-        );
-    }
-
-    protected function url(): Attribute
-    {
-        return Attribute::get(function ($value, $attributes) {
-            if (! isset($attributes['source'])) {
-                return '';
-            }
-
-            if (Str::isMatch('/http(s)?:\/\//', $this->source)) {
-                return $this->source;
-            }
-
-            $path = config('media.storage.images.path', 'media/images');
-            $disk = config('media.storage.images.disk', 'public');
-
-            return Storage::disk($disk)->url("{$path}/{$this->source}");
-        });
-    }
-
-    protected function size(): Attribute
-    {
-        return Attribute::get(function (): int {
-            $path = config('media.storage.images.path', 'media/images');
-            $disk = config('media.storage.images.disk', 'public');
-
-            $filePath = "{$path}/{$this->name}";
-
-            if (Str::isMatch('/http(s)?:\/\//', $this->source)) {
-                return 0;
-            }
-
-            try {
-                $exist = Storage::disk($disk)->exists($filePath);
-            } catch (UnableToCheckFileExistence) {
-                $exist = false;
-            }
-
-            if (! $exist) {
-                return 0;
-            }
-
-            return Storage::disk($disk)->fileSize($filePath);
-        });
-    }
-
     /**
      * Create a new factory instance for the model.
      */
@@ -171,5 +118,58 @@ class Image extends Model
                 'height' => null,
             ]);
         }
+    }
+
+    protected function name(): Attribute
+    {
+        return Attribute::get(
+            fn ($value, $attributes) => empty($attributes['name'])
+                ? Str::before(Str::afterLast($this->source, '/'), '?')
+                : $attributes['name'],
+        );
+    }
+
+    protected function url(): Attribute
+    {
+        return Attribute::get(function ($value, $attributes) {
+            if (! isset($attributes['source'])) {
+                return '';
+            }
+
+            if (Str::isMatch('/http(s)?:\/\//', $this->source)) {
+                return $this->source;
+            }
+
+            $path = config('media.storage.images.path', 'media/images');
+            $disk = config('media.storage.images.disk', 'public');
+
+            return Storage::disk($disk)->url("{$path}/{$this->source}");
+        });
+    }
+
+    protected function size(): Attribute
+    {
+        return Attribute::get(function (): int {
+            $path = config('media.storage.images.path', 'media/images');
+            $disk = config('media.storage.images.disk', 'public');
+
+            $filePath = "{$path}/{$this->name}";
+
+            if (Str::isMatch('/http(s)?:\/\//', $this->source)) {
+                return 0;
+            }
+
+            try {
+                $exist = Storage::disk($disk)->exists($filePath);
+            } catch (UnableToCheckFileExistence) {
+                $exist = false;
+            }
+
+            if (! $exist) {
+                return 0;
+            }
+
+            return Storage::disk($disk)->fileSize($filePath);
+        });
     }
 }
