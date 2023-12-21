@@ -2,10 +2,10 @@
 
 namespace MyListerHub\Media\Observers;
 
-use Exception;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Str;
 use MyListerHub\Media\Models\Image;
+use Throwable;
 
 class ImageObserver
 {
@@ -29,15 +29,21 @@ class ImageObserver
             return;
         }
 
+        $content = Storage::disk($disk)->get("{$path}/{$image->source}");
+
+        if (is_null($content)) {
+            return;
+        }
+
         try {
-            $content = Storage::disk($disk)->get("{$path}/{$image->source}");
             $details = \Spatie\Image\Image::load($content);
 
             $image->update([
                 'width' => $details->getWidth(),
                 'height' => $details->getHeight(),
             ]);
-        } catch (Exception $exception) {
+        } catch (Throwable) {
+            return;
         }
     }
 }
