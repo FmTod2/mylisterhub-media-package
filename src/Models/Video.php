@@ -36,7 +36,7 @@ class Video extends Model
     /**
      * Create a new video from a file.
      */
-    public static function createFromFile(UploadedFile|File $file, string $name = null, string $disk = null): static
+    public static function createFromFile(UploadedFile|File $file, ?string $name = null, ?string $disk = null): static
     {
         $path = config('media.storage.videos.path', 'media/videos');
 
@@ -61,7 +61,7 @@ class Video extends Model
     /**
      * Create a new video from an url.
      */
-    public static function createFromUrl(string $url, string $name = null, bool $upload = false, string $disk = null): static
+    public static function createFromUrl(string $url, ?string $name = null, bool $upload = false, ?string $disk = null): static
     {
         if (is_null($name) || $name === '') {
             $name = (string) Str::of($url)

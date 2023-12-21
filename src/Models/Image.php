@@ -48,7 +48,7 @@ class Image extends Model
     /**
      * Create a new image from a file.
      */
-    public static function createFromFile(UploadedFile|File $file, string $name = null, string $disk = null): static
+    public static function createFromFile(UploadedFile|File $file, ?string $name = null, ?string $disk = null): static
     {
         $path = config('media.storage.images.path', 'media/images');
         $image = \Spatie\Image\Image::load($file);
@@ -74,7 +74,7 @@ class Image extends Model
     /**
      * Create a new image from an url.
      */
-    public static function createFromUrl(string $url, string $name = null, bool $upload = false, string $disk = null): static
+    public static function createFromUrl(string $url, ?string $name = null, bool $upload = false, ?string $disk = null): static
     {
         $path = config('media.storage.images.path', 'media/images');
 

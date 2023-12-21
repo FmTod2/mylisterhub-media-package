@@ -4,7 +4,6 @@ namespace MyListerHub\Media;
 
 use MyListerHub\Media\Models\Image;
 use MyListerHub\Media\Observers\ImageObserver;
-use Spatie\LaravelPackageTools\Commands\InstallCommand;
 use Spatie\LaravelPackageTools\Package;
 use Spatie\LaravelPackageTools\PackageServiceProvider;
 
