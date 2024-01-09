@@ -15,12 +15,12 @@ class ImageMapper
         ], Arr::fromArrayable($images));
     }
 
-    public static function toUrls(Collection|array $images): array
+    public static function toUrls(Collection|array $images, bool $bustCache = false): array
     {
         return collect($images)
             ->sortBy('order')
             ->pluck('url')
-            ->map(fn (string $url) => str_replace(' ', '%20', $url))
+            ->map(fn (string $url) => str_replace(' ', '%20', $url) . ($bustCache ? '?' . now()->getTimestamp() : ''))
             ->toArray();
     }
 }
