@@ -54,7 +54,7 @@ class Image extends Model
         $image = \Spatie\Image\Image::load($file);
 
         if (is_null($name) || $name === '') {
-            $name = sprintf('%s_%s', now()->getTimestamp(), $file->getClientOriginalExtension());
+            $name = sprintf('%s_%s', now()->getTimestamp(), $file->getClientOriginalName());
         }
 
         if (is_null($disk)) {
