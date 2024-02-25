@@ -10,10 +10,10 @@ dependencies:
     version: 1.6.7
   typescript:
     specifier: ^5.3.2
-    version: 5.3.2
+    version: 5.3.3
   vite-plugin-dts:
     specifier: ^3.6.4
-    version: 3.6.4(@types/node@18.19.2)(rollup@2.79.1)(typescript@5.3.2)(vite@5.0.12)
+    version: 3.6.4(@types/node@18.19.2)(rollup@2.79.1)(typescript@5.3.3)(vite@5.0.12)
   vue-api-query:
     specifier: ^1.11.0
     version: 1.11.0
@@ -21,7 +21,7 @@ dependencies:
 devDependencies:
   '@commitlint/cli':
     specifier: ^18.0.0
-    version: 18.4.3(typescript@5.3.2)
+    version: 18.4.3(typescript@5.3.3)
   '@commitlint/config-conventional':
     specifier: ^18.0.0
     version: 18.4.3
@@ -42,7 +42,7 @@ devDependencies:
     version: 0.15.1
   semantic-release:
     specifier: ^22.0.0
-    version: 22.0.12(typescript@5.3.2)
+    version: 22.0.12(typescript@5.3.3)
   vite:
     specifier: ^5.0.4
     version: 5.0.12(@types/node@18.19.2)
@@ -1339,14 +1339,14 @@ packages:
     dev: true
     optional: true
 
-  /@commitlint/cli@18.4.3(typescript@5.3.2):
+  /@commitlint/cli@18.4.3(typescript@5.3.3):
     resolution: {integrity: sha512-zop98yfB3A6NveYAZ3P1Mb6bIXuCeWgnUfVNkH4yhIMQpQfzFwseadazOuSn0OOfTt0lWuFauehpm9GcqM5lww==}
     engines: {node: '>=v18'}
     hasBin: true
     dependencies:
       '@commitlint/format': 18.4.3
       '@commitlint/lint': 18.4.3
-      '@commitlint/load': 18.4.3(typescript@5.3.2)
+      '@commitlint/load': 18.4.3(typescript@5.3.3)
       '@commitlint/read': 18.4.3
       '@commitlint/types': 18.4.3
       execa: 5.1.1
@@ -1416,7 +1416,7 @@ packages:
       '@commitlint/types': 18.4.3
     dev: true
 
-  /@commitlint/load@18.4.3(typescript@5.3.2):
+  /@commitlint/load@18.4.3(typescript@5.3.3):
     resolution: {integrity: sha512-v6j2WhvRQJrcJaj5D+EyES2WKTxPpxENmNpNG3Ww8MZGik3jWRXtph0QTzia5ZJyPh2ib5aC/6BIDymkUUM58Q==}
     engines: {node: '>=v18'}
     dependencies:
@@ -1426,8 +1426,8 @@ packages:
       '@commitlint/types': 18.4.3
       '@types/node': 18.19.2
       chalk: 4.1.2
-      cosmiconfig: 8.3.6(typescript@5.3.2)
-      cosmiconfig-typescript-loader: 5.0.0(@types/node@18.19.2)(cosmiconfig@8.3.6)(typescript@5.3.2)
+      cosmiconfig: 8.3.6(typescript@5.3.3)
+      cosmiconfig-typescript-loader: 5.0.0(@types/node@18.19.2)(cosmiconfig@8.3.6)(typescript@5.3.3)
       lodash.isplainobject: 4.0.6
       lodash.merge: 4.6.2
       lodash.uniq: 4.5.0
@@ -2143,7 +2143,7 @@ packages:
       aggregate-error: 3.1.0
       fs-extra: 11.2.0
       lodash: 4.17.21
-      semantic-release: 22.0.12(typescript@5.3.2)
+      semantic-release: 22.0.12(typescript@5.3.3)
     dev: true
 
   /@semantic-release/commit-analyzer@11.1.0(semantic-release@22.0.12):
@@ -2159,7 +2159,7 @@ packages:
       import-from-esm: 1.3.3
       lodash-es: 4.17.21
       micromatch: 4.0.5
-      semantic-release: 22.0.12(typescript@5.3.2)
+      semantic-release: 22.0.12(typescript@5.3.3)
     transitivePeerDependencies:
       - supports-color
     dev: true
@@ -2195,7 +2195,7 @@ packages:
       lodash-es: 4.17.21
       mime: 4.0.1
       p-filter: 4.1.0
-      semantic-release: 22.0.12(typescript@5.3.2)
+      semantic-release: 22.0.12(typescript@5.3.3)
       url-join: 5.0.0
     transitivePeerDependencies:
       - supports-color
@@ -2218,7 +2218,7 @@ packages:
       rc: 1.2.8
       read-pkg: 9.0.1
       registry-auth-token: 5.0.2
-      semantic-release: 22.0.12(typescript@5.3.2)
+      semantic-release: 22.0.12(typescript@5.3.3)
       semver: 7.6.0
       tempy: 3.1.0
     dev: true
@@ -2239,7 +2239,7 @@ packages:
       into-stream: 7.0.0
       lodash-es: 4.17.21
       read-pkg-up: 11.0.0
-      semantic-release: 22.0.12(typescript@5.3.2)
+      semantic-release: 22.0.12(typescript@5.3.3)
     transitivePeerDependencies:
       - supports-color
     dev: true
@@ -2347,7 +2347,7 @@ packages:
       '@vue/shared': 3.3.10
     dev: false
 
-  /@vue/language-core@1.8.25(typescript@5.3.2):
+  /@vue/language-core@1.8.25(typescript@5.3.3):
     resolution: {integrity: sha512-NJk/5DnAZlpvXX8BdWmHI45bWGLViUaS3R/RMrmFSvFMSbJKuEODpM4kR0F0Ofv5SFzCWuNiMhxameWpVdQsnA==}
     peerDependencies:
       typescript: '*'
@@ -2363,7 +2363,7 @@ packages:
       minimatch: 9.0.3
       muggle-string: 0.3.1
       path-browserify: 1.0.1
-      typescript: 5.3.2
+      typescript: 5.3.3
       vue-template-compiler: 2.7.15
     dev: false
 
@@ -2969,7 +2969,7 @@ packages:
     resolution: {integrity: sha512-ZQBvi1DcpJ4GDqanjucZ2Hj3wEO5pZDS89BWbkcrvdxksJorwUDDZamX9ldFkp9aw2lmBDLgkObEA4DWNJ9FYQ==}
     dev: true
 
-  /cosmiconfig-typescript-loader@5.0.0(@types/node@18.19.2)(cosmiconfig@8.3.6)(typescript@5.3.2):
+  /cosmiconfig-typescript-loader@5.0.0(@types/node@18.19.2)(cosmiconfig@8.3.6)(typescript@5.3.3):
     resolution: {integrity: sha512-+8cK7jRAReYkMwMiG+bxhcNKiHJDM6bR9FD/nGBXOWdMLuYawjF5cGrtLilJ+LGd3ZjCXnJjR5DkfWPoIVlqJA==}
     engines: {node: '>=v16'}
     peerDependencies:
@@ -2978,9 +2978,9 @@ packages:
       typescript: '>=4'
     dependencies:
       '@types/node': 18.19.2
-      cosmiconfig: 8.3.6(typescript@5.3.2)
+      cosmiconfig: 8.3.6(typescript@5.3.3)
       jiti: 1.21.0
-      typescript: 5.3.2
+      typescript: 5.3.3
     dev: true
 
   /cosmiconfig@7.1.0:
@@ -2994,7 +2994,7 @@ packages:
       yaml: 1.10.2
     dev: true
 
-  /cosmiconfig@8.3.6(typescript@5.3.2):
+  /cosmiconfig@8.3.6(typescript@5.3.3):
     resolution: {integrity: sha512-kcZ6+W5QzcJ3P1Mt+83OUv/oHFqZHIx8DuxG6eZ5RGMERoLqp4BuGjhHLYGK+Kf5XVkQvqBSmAy/nGWN3qDgEA==}
     engines: {node: '>=14'}
     peerDependencies:
@@ -3007,7 +3007,7 @@ packages:
       js-yaml: 4.1.0
       parse-json: 5.2.0
       path-type: 4.0.0
-      typescript: 5.3.2
+      typescript: 5.3.3
     dev: true
 
   /cross-spawn@7.0.3:
@@ -6054,7 +6054,7 @@ packages:
       is-regex: 1.1.4
     dev: true
 
-  /semantic-release@22.0.12(typescript@5.3.2):
+  /semantic-release@22.0.12(typescript@5.3.3):
     resolution: {integrity: sha512-0mhiCR/4sZb00RVFJIUlMuiBkW3NMpVIW2Gse7noqEMoFGkvfPPAImEQbkBV8xga4KOPP4FdTRYuLLy32R1fPw==}
     engines: {node: ^18.17 || >=20.6.1}
     hasBin: true
@@ -6065,7 +6065,7 @@ packages:
       '@semantic-release/npm': 11.0.2(semantic-release@22.0.12)
       '@semantic-release/release-notes-generator': 12.1.0(semantic-release@22.0.12)
       aggregate-error: 5.0.0
-      cosmiconfig: 8.3.6(typescript@5.3.2)
+      cosmiconfig: 8.3.6(typescript@5.3.3)
       debug: 4.3.4
       env-ci: 10.0.0
       execa: 8.0.1
@@ -6663,8 +6663,8 @@ packages:
     hasBin: true
     dev: false
 
-  /typescript@5.3.2:
-    resolution: {integrity: sha512-6l+RyNy7oAHDfxC4FzSJcz9vnjTKxrLpDG5M2Vu4SHRVNg6xzqZp6LYSR9zjqQTu8DU/f5xwxUdADOkbrIX2gQ==}
+  /typescript@5.3.3:
+    resolution: {integrity: sha512-pXWcraxM0uxAS+tN0AG/BF2TyqmHO014Z070UsJ+pFvYuRSq8KH8DmWpnbXe0pEPDHXZV3FcAbJkijJ5oNEnWw==}
     engines: {node: '>=14.17'}
     hasBin: true
 
@@ -6779,7 +6779,7 @@ packages:
     engines: {node: '>= 0.10'}
     dev: false
 
-  /vite-plugin-dts@3.6.4(@types/node@18.19.2)(rollup@2.79.1)(typescript@5.3.2)(vite@5.0.12):
+  /vite-plugin-dts@3.6.4(@types/node@18.19.2)(rollup@2.79.1)(typescript@5.3.3)(vite@5.0.12):
     resolution: {integrity: sha512-yOVhUI/kQhtS6lCXRYYLv2UUf9bftcwQK9ROxCX2ul17poLQs02ctWX7+vXB8GPRzH8VCK3jebEFtPqqijXx6w==}
     engines: {node: ^14.18.0 || >=16.0.0}
     peerDependencies:
@@ -6791,12 +6791,12 @@ packages:
     dependencies:
       '@microsoft/api-extractor': 7.38.4(@types/node@18.19.2)
       '@rollup/pluginutils': 5.1.0(rollup@2.79.1)
-      '@vue/language-core': 1.8.25(typescript@5.3.2)
+      '@vue/language-core': 1.8.25(typescript@5.3.3)
       debug: 4.3.4
       kolorist: 1.8.0
-      typescript: 5.3.2
+      typescript: 5.3.3
       vite: 5.0.12(@types/node@18.19.2)
-      vue-tsc: 1.8.25(typescript@5.3.2)
+      vue-tsc: 1.8.25(typescript@5.3.3)
     transitivePeerDependencies:
       - '@types/node'
       - rollup
@@ -6856,16 +6856,16 @@ packages:
       he: 1.2.0
     dev: false
 
-  /vue-tsc@1.8.25(typescript@5.3.2):
+  /vue-tsc@1.8.25(typescript@5.3.3):
     resolution: {integrity: sha512-lHsRhDc/Y7LINvYhZ3pv4elflFADoEOo67vfClAfF2heVHpHmVquLSjojgCSIwzA4F0Pc4vowT/psXCYcfk+iQ==}
     hasBin: true
     peerDependencies:
       typescript: '*'
     dependencies:
       '@volar/typescript': 1.11.1
-      '@vue/language-core': 1.8.25(typescript@5.3.2)
+      '@vue/language-core': 1.8.25(typescript@5.3.3)
       semver: 7.5.4
-      typescript: 5.3.2
+      typescript: 5.3.3
     dev: false
 
   /which-boxed-primitive@1.0.2:
