@@ -16,7 +16,7 @@ importers:
         version: 5.4.2
       vite-plugin-dts:
         specifier: ^3.6.4
-        version: 3.7.3(@types/node@20.12.3)(rollup@2.79.1)(typescript@5.4.2)(vite@5.2.12(@types/node@20.12.3)(terser@5.25.0))
+        version: 3.7.3(@types/node@20.12.3)(rollup@2.79.1)(typescript@5.4.2)(vite@5.2.13(@types/node@20.12.3)(terser@5.25.0))
       vue-api-query:
         specifier: ^1.11.0
         version: 1.11.0
@@ -47,7 +47,7 @@ importers:
         version: 22.0.12(typescript@5.4.2)
       vite:
         specifier: ^5.0.4
-        version: 5.2.12(@types/node@20.12.3)(terser@5.25.0)
+        version: 5.2.13(@types/node@20.12.3)(terser@5.25.0)
 
 packages:
 
@@ -3831,8 +3831,8 @@ packages:
       vite:
         optional: true
 
-  vite@5.2.12:
-    resolution: {integrity: sha512-/gC8GxzxMK5ntBwb48pR32GGhENnjtY30G4A0jemunsBkiEZFw60s8InGpN8gkhHEkjnRK1aSAxeQgwvFhUHAA==}
+  vite@5.2.13:
+    resolution: {integrity: sha512-SSq1noJfY9pR3I1TUENL3rQYDQCFqgD+lM6fTRAM8Nv6Lsg5hDLaXkjETVeBt+7vZBCMoibD+6IWnT2mJ+Zb/A==}
     engines: {node: ^18.0.0 || >=20.0.0}
     hasBin: true
     peerDependencies:
@@ -7914,7 +7914,7 @@ snapshots:
 
   validator@13.11.0: {}
 
-  vite-plugin-dts@3.7.3(@types/node@20.12.3)(rollup@2.79.1)(typescript@5.4.2)(vite@5.2.12(@types/node@20.12.3)(terser@5.25.0)):
+  vite-plugin-dts@3.7.3(@types/node@20.12.3)(rollup@2.79.1)(typescript@5.4.2)(vite@5.2.13(@types/node@20.12.3)(terser@5.25.0)):
     dependencies:
       '@microsoft/api-extractor': 7.39.0(@types/node@20.12.3)
       '@rollup/pluginutils': 5.1.0(rollup@2.79.1)
@@ -7924,13 +7924,13 @@ snapshots:
       typescript: 5.4.2
       vue-tsc: 1.8.27(typescript@5.4.2)
     optionalDependencies:
-      vite: 5.2.12(@types/node@20.12.3)(terser@5.25.0)
+      vite: 5.2.13(@types/node@20.12.3)(terser@5.25.0)
     transitivePeerDependencies:
       - '@types/node'
       - rollup
       - supports-color
 
-  vite@5.2.12(@types/node@20.12.3)(terser@5.25.0):
+  vite@5.2.13(@types/node@20.12.3)(terser@5.25.0):
     dependencies:
       esbuild: 0.20.2
       postcss: 8.4.38
