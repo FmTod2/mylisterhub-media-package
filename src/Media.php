@@ -2,6 +2,4 @@
 
 namespace MyListerHub\Media;
 
-class Media
-{
-}
+class Media {}
