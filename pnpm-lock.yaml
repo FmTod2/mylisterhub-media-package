@@ -13,26 +13,26 @@ importers:
         version: 1.7.2
       typescript:
         specifier: ^5.3.2
-        version: 5.4.5
+        version: 5.5.2
       vite-plugin-dts:
         specifier: ^3.6.4
-        version: 3.7.3(@types/node@20.12.3)(rollup@2.79.1)(typescript@5.4.5)(vite@5.3.2(@types/node@20.12.3)(terser@5.25.0))
+        version: 3.7.3(@types/node@20.12.3)(rollup@2.79.1)(typescript@5.5.2)(vite@5.3.2(@types/node@20.12.3)(terser@5.25.0))
       vue-api-query:
         specifier: ^1.11.0
         version: 1.11.0
     devDependencies:
       '@commitlint/cli':
         specifier: ^18.0.0
-        version: 18.6.1(@types/node@20.12.3)(typescript@5.4.5)
+        version: 18.6.1(@types/node@20.12.3)(typescript@5.5.2)
       '@commitlint/config-conventional':
         specifier: ^18.0.0
         version: 18.6.3
       '@semantic-release/changelog':
         specifier: ^6.0.3
-        version: 6.0.3(semantic-release@22.0.12(typescript@5.4.5))
+        version: 6.0.3(semantic-release@22.0.12(typescript@5.5.2))
       '@semantic-release/github':
         specifier: ^9.0.3
-        version: 9.2.6(semantic-release@22.0.12(typescript@5.4.5))
+        version: 9.2.6(semantic-release@22.0.12(typescript@5.5.2))
       husky:
         specifier: ^8.0.0
         version: 8.0.3
@@ -44,7 +44,7 @@ importers:
         version: 0.15.1
       semantic-release:
         specifier: ^22.0.0
-        version: 22.0.12(typescript@5.4.5)
+        version: 22.0.12(typescript@5.5.2)
       vite:
         specifier: ^5.0.4
         version: 5.3.2(@types/node@20.12.3)(terser@5.25.0)
@@ -3752,8 +3752,8 @@ packages:
     engines: {node: '>=14.17'}
     hasBin: true
 
-  typescript@5.4.5:
-    resolution: {integrity: sha512-vcI4UpRgg81oIRUFwR0WSIHKt11nJ7SAVlYNIu+QpqeyXP+gpQJy/Z4+F0aGxSE4MqwjyXvW/TzgkLAx2AGHwQ==}
+  typescript@5.5.2:
+    resolution: {integrity: sha512-NcRtPEOsPFFWjobJEtfihkLCZCXZt/os3zf8nTxjVH3RvTSxjrCamJpbExGvYOF+tFHc3pA65qpdwPbzjohhew==}
     engines: {node: '>=14.17'}
     hasBin: true
 
@@ -4736,11 +4736,11 @@ snapshots:
   '@colors/colors@1.5.0':
     optional: true
 
-  '@commitlint/cli@18.6.1(@types/node@20.12.3)(typescript@5.4.5)':
+  '@commitlint/cli@18.6.1(@types/node@20.12.3)(typescript@5.5.2)':
     dependencies:
       '@commitlint/format': 18.6.1
       '@commitlint/lint': 18.6.1
-      '@commitlint/load': 18.6.1(@types/node@20.12.3)(typescript@5.4.5)
+      '@commitlint/load': 18.6.1(@types/node@20.12.3)(typescript@5.5.2)
       '@commitlint/read': 18.6.1
       '@commitlint/types': 18.6.1
       execa: 5.1.1
@@ -4790,15 +4790,15 @@ snapshots:
       '@commitlint/rules': 18.6.1
       '@commitlint/types': 18.6.1
 
-  '@commitlint/load@18.6.1(@types/node@20.12.3)(typescript@5.4.5)':
+  '@commitlint/load@18.6.1(@types/node@20.12.3)(typescript@5.5.2)':
     dependencies:
       '@commitlint/config-validator': 18.6.1
       '@commitlint/execute-rule': 18.6.1
       '@commitlint/resolve-extends': 18.6.1
       '@commitlint/types': 18.6.1
       chalk: 4.1.2
-      cosmiconfig: 8.3.6(typescript@5.4.5)
-      cosmiconfig-typescript-loader: 5.0.0(@types/node@20.12.3)(cosmiconfig@8.3.6(typescript@5.4.5))(typescript@5.4.5)
+      cosmiconfig: 8.3.6(typescript@5.5.2)
+      cosmiconfig-typescript-loader: 5.0.0(@types/node@20.12.3)(cosmiconfig@8.3.6(typescript@5.5.2))(typescript@5.5.2)
       lodash.isplainobject: 4.0.6
       lodash.merge: 4.6.2
       lodash.uniq: 4.5.0
@@ -5188,15 +5188,15 @@ snapshots:
       colors: 1.2.5
       string-argv: 0.3.2
 
-  '@semantic-release/changelog@6.0.3(semantic-release@22.0.12(typescript@5.4.5))':
+  '@semantic-release/changelog@6.0.3(semantic-release@22.0.12(typescript@5.5.2))':
     dependencies:
       '@semantic-release/error': 3.0.0
       aggregate-error: 3.1.0
       fs-extra: 11.2.0
       lodash: 4.17.21
-      semantic-release: 22.0.12(typescript@5.4.5)
+      semantic-release: 22.0.12(typescript@5.5.2)
 
-  '@semantic-release/commit-analyzer@11.1.0(semantic-release@22.0.12(typescript@5.4.5))':
+  '@semantic-release/commit-analyzer@11.1.0(semantic-release@22.0.12(typescript@5.5.2))':
     dependencies:
       conventional-changelog-angular: 7.0.0
       conventional-commits-filter: 4.0.0
@@ -5205,7 +5205,7 @@ snapshots:
       import-from-esm: 1.3.3
       lodash-es: 4.17.21
       micromatch: 4.0.5
-      semantic-release: 22.0.12(typescript@5.4.5)
+      semantic-release: 22.0.12(typescript@5.5.2)
     transitivePeerDependencies:
       - supports-color
 
@@ -5213,7 +5213,7 @@ snapshots:
 
   '@semantic-release/error@4.0.0': {}
 
-  '@semantic-release/github@9.2.6(semantic-release@22.0.12(typescript@5.4.5))':
+  '@semantic-release/github@9.2.6(semantic-release@22.0.12(typescript@5.5.2))':
     dependencies:
       '@octokit/core': 5.1.0
       '@octokit/plugin-paginate-rest': 9.2.0(@octokit/core@5.1.0)
@@ -5230,12 +5230,12 @@ snapshots:
       lodash-es: 4.17.21
       mime: 4.0.1
       p-filter: 4.1.0
-      semantic-release: 22.0.12(typescript@5.4.5)
+      semantic-release: 22.0.12(typescript@5.5.2)
       url-join: 5.0.0
     transitivePeerDependencies:
       - supports-color
 
-  '@semantic-release/npm@11.0.2(semantic-release@22.0.12(typescript@5.4.5))':
+  '@semantic-release/npm@11.0.2(semantic-release@22.0.12(typescript@5.5.2))':
     dependencies:
       '@semantic-release/error': 4.0.0
       aggregate-error: 5.0.0
@@ -5248,11 +5248,11 @@ snapshots:
       rc: 1.2.8
       read-pkg: 9.0.1
       registry-auth-token: 5.0.2
-      semantic-release: 22.0.12(typescript@5.4.5)
+      semantic-release: 22.0.12(typescript@5.5.2)
       semver: 7.6.0
       tempy: 3.1.0
 
-  '@semantic-release/release-notes-generator@12.1.0(semantic-release@22.0.12(typescript@5.4.5))':
+  '@semantic-release/release-notes-generator@12.1.0(semantic-release@22.0.12(typescript@5.5.2))':
     dependencies:
       conventional-changelog-angular: 7.0.0
       conventional-changelog-writer: 7.0.1
@@ -5264,7 +5264,7 @@ snapshots:
       into-stream: 7.0.0
       lodash-es: 4.17.21
       read-pkg-up: 11.0.0
-      semantic-release: 22.0.12(typescript@5.4.5)
+      semantic-release: 22.0.12(typescript@5.5.2)
     transitivePeerDependencies:
       - supports-color
 
@@ -5333,7 +5333,7 @@ snapshots:
       '@vue/compiler-core': 3.4.20
       '@vue/shared': 3.4.20
 
-  '@vue/language-core@1.8.27(typescript@5.4.5)':
+  '@vue/language-core@1.8.27(typescript@5.5.2)':
     dependencies:
       '@volar/language-core': 1.11.1
       '@volar/source-map': 1.11.1
@@ -5345,7 +5345,7 @@ snapshots:
       path-browserify: 1.0.1
       vue-template-compiler: 2.7.16
     optionalDependencies:
-      typescript: 5.4.5
+      typescript: 5.5.2
 
   '@vue/shared@3.4.20': {}
 
@@ -5709,12 +5709,12 @@ snapshots:
 
   core-util-is@1.0.3: {}
 
-  cosmiconfig-typescript-loader@5.0.0(@types/node@20.12.3)(cosmiconfig@8.3.6(typescript@5.4.5))(typescript@5.4.5):
+  cosmiconfig-typescript-loader@5.0.0(@types/node@20.12.3)(cosmiconfig@8.3.6(typescript@5.5.2))(typescript@5.5.2):
     dependencies:
       '@types/node': 20.12.3
-      cosmiconfig: 8.3.6(typescript@5.4.5)
+      cosmiconfig: 8.3.6(typescript@5.5.2)
       jiti: 1.21.0
-      typescript: 5.4.5
+      typescript: 5.5.2
 
   cosmiconfig@7.1.0:
     dependencies:
@@ -5724,14 +5724,14 @@ snapshots:
       path-type: 4.0.0
       yaml: 1.10.2
 
-  cosmiconfig@8.3.6(typescript@5.4.5):
+  cosmiconfig@8.3.6(typescript@5.5.2):
     dependencies:
       import-fresh: 3.3.0
       js-yaml: 4.1.0
       parse-json: 5.2.0
       path-type: 4.0.0
     optionalDependencies:
-      typescript: 5.4.5
+      typescript: 5.5.2
 
   cross-spawn@7.0.3:
     dependencies:
@@ -7503,15 +7503,15 @@ snapshots:
       get-intrinsic: 1.2.2
       is-regex: 1.1.4
 
-  semantic-release@22.0.12(typescript@5.4.5):
+  semantic-release@22.0.12(typescript@5.5.2):
     dependencies:
-      '@semantic-release/commit-analyzer': 11.1.0(semantic-release@22.0.12(typescript@5.4.5))
+      '@semantic-release/commit-analyzer': 11.1.0(semantic-release@22.0.12(typescript@5.5.2))
       '@semantic-release/error': 4.0.0
-      '@semantic-release/github': 9.2.6(semantic-release@22.0.12(typescript@5.4.5))
-      '@semantic-release/npm': 11.0.2(semantic-release@22.0.12(typescript@5.4.5))
-      '@semantic-release/release-notes-generator': 12.1.0(semantic-release@22.0.12(typescript@5.4.5))
+      '@semantic-release/github': 9.2.6(semantic-release@22.0.12(typescript@5.5.2))
+      '@semantic-release/npm': 11.0.2(semantic-release@22.0.12(typescript@5.5.2))
+      '@semantic-release/release-notes-generator': 12.1.0(semantic-release@22.0.12(typescript@5.5.2))
       aggregate-error: 5.0.0
-      cosmiconfig: 8.3.6(typescript@5.4.5)
+      cosmiconfig: 8.3.6(typescript@5.5.2)
       debug: 4.3.4
       env-ci: 10.0.0
       execa: 8.0.1
@@ -7867,7 +7867,7 @@ snapshots:
 
   typescript@5.3.3: {}
 
-  typescript@5.4.5: {}
+  typescript@5.5.2: {}
 
   uglify-js@3.17.4:
     optional: true
@@ -7927,15 +7927,15 @@ snapshots:
 
   validator@13.11.0: {}
 
-  vite-plugin-dts@3.7.3(@types/node@20.12.3)(rollup@2.79.1)(typescript@5.4.5)(vite@5.3.2(@types/node@20.12.3)(terser@5.25.0)):
+  vite-plugin-dts@3.7.3(@types/node@20.12.3)(rollup@2.79.1)(typescript@5.5.2)(vite@5.3.2(@types/node@20.12.3)(terser@5.25.0)):
     dependencies:
       '@microsoft/api-extractor': 7.39.0(@types/node@20.12.3)
       '@rollup/pluginutils': 5.1.0(rollup@2.79.1)
-      '@vue/language-core': 1.8.27(typescript@5.4.5)
+      '@vue/language-core': 1.8.27(typescript@5.5.2)
       debug: 4.3.4
       kolorist: 1.8.0
-      typescript: 5.4.5
-      vue-tsc: 1.8.27(typescript@5.4.5)
+      typescript: 5.5.2
+      vue-tsc: 1.8.27(typescript@5.5.2)
     optionalDependencies:
       vite: 5.3.2(@types/node@20.12.3)(terser@5.25.0)
     transitivePeerDependencies:
@@ -7967,12 +7967,12 @@ snapshots:
       de-indent: 1.0.2
       he: 1.2.0
 
-  vue-tsc@1.8.27(typescript@5.4.5):
+  vue-tsc@1.8.27(typescript@5.5.2):
     dependencies:
       '@volar/typescript': 1.11.1
-      '@vue/language-core': 1.8.27(typescript@5.4.5)
+      '@vue/language-core': 1.8.27(typescript@5.5.2)
       semver: 7.6.0
-      typescript: 5.4.5
+      typescript: 5.5.2
 
   which-boxed-primitive@1.0.2:
     dependencies:
