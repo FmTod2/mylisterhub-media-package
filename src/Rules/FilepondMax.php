@@ -14,10 +14,7 @@ class FilepondMax implements ValidationRule
      *
      * @return void
      */
-    public function __construct(public int $size)
-    {
-
-    }
+    public function __construct(public int $size) {}
 
     /**
      * Run the validation rule.

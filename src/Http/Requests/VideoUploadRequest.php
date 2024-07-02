@@ -39,12 +39,12 @@ class VideoUploadRequest extends FormRequest
                     'required',
                     new FilepondValid,
                     new FilepondMimes('mp4'),
-                    ... $maxSize ? [new FilepondMax($maxSize)] : [],
+                    ...$maxSize ? [new FilepondMax($maxSize)] : [],
                 ]
                 : [
                     'required',
                     File::types('video/*'),
-                    ... $maxSize ? ["max:$maxSize"] : [],
+                    ...$maxSize ? ["max:{$maxSize}"] : [],
                 ],
         ];
     }

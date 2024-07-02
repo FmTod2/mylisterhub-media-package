@@ -39,12 +39,12 @@ class ImageUploadRequest extends FormRequest
                     'required',
                     new FilepondValid,
                     new FilepondMimes('jpg', 'jpeg', 'png'),
-                    ... $maxSize ? [new FilepondMax($maxSize)] : [],
+                    ...$maxSize ? [new FilepondMax($maxSize)] : [],
                 ]
                 : [
                     'required',
                     File::image(),
-                    ... $maxSize ? ["max:$maxSize"] : [],
+                    ...$maxSize ? ["max:{$maxSize}"] : [],
                 ],
         ];
     }
