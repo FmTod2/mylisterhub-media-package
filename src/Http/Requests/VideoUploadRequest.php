@@ -5,6 +5,7 @@ namespace MyListerHub\Media\Http\Requests;
 use Illuminate\Foundation\Http\FormRequest;
 use Illuminate\Validation\Rule;
 use Illuminate\Validation\Rules\File;
+use MyListerHub\Media\Rules\FilepondMax;
 use MyListerHub\Media\Rules\FilepondMimes;
 use MyListerHub\Media\Rules\FilepondValid;
 
@@ -25,6 +26,8 @@ class VideoUploadRequest extends FormRequest
      */
     public function rules(): array
     {
+        $maxSize = config('media.storage.videos.max_size');
+
         return [
             'type' => [
                 'nullable',
@@ -32,8 +35,17 @@ class VideoUploadRequest extends FormRequest
                 Rule::in(['filepond', 'files']),
             ],
             'files.*' => $this->type() === 'filepond'
-                ? ['required', new FilepondValid, new FilepondMimes('mp4')]
-                : ['required', File::types('video/*')],
+                ? [
+                    'required',
+                    new FilepondValid,
+                    new FilepondMimes('mp4'),
+                    ... $maxSize ? [new FilepondMax($maxSize)] : [],
+                ]
+                : [
+                    'required',
+                    File::types('video/*'),
+                    ... $maxSize ? ["max:$maxSize"] : [],
+                ],
         ];
     }
 

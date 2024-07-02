@@ -28,11 +28,13 @@ return [
         'images' => [
             'disk' => 'public',
             'path' => 'media/images',
+            'max_size' => 2048,
         ],
 
         'videos' => [
             'disk' => 'public',
             'path' => 'media/videos',
+            'max_size' => 10240,
         ],
     ],
 ];
