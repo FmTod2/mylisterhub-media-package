@@ -142,8 +142,9 @@ class Image extends Model
 
             $path = config('media.storage.images.path', 'media/images');
             $disk = config('media.storage.images.disk', 'public');
+            $name = rawurlencode($this->source);
 
-            return Storage::disk($disk)->url("{$path}/{$this->source}");
+            return Storage::disk($disk)->url("{$path}/{$name}");
         });
     }
 
