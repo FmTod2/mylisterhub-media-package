@@ -5,6 +5,7 @@ namespace MyListerHub\Media\Concerns;
 use Illuminate\Database\Eloquent\Relations\MorphToMany;
 use Illuminate\Http\UploadedFile;
 use Illuminate\Support\Collection;
+use MyListerHub\Media\Actions\UpsertImages;
 use MyListerHub\Media\Models\Image;
 
 trait HasImages
@@ -93,7 +94,7 @@ trait HasImages
             $images = collect($images);
         }
 
-        $imageIds = $images->mapWithKeys(fn (Image $image) => [$image->id => ['order' => $image->pivot?->order]]);
+        $imageIds = UpsertImages::run($images);
 
         $this->images()->sync($imageIds, $detaching);
 
