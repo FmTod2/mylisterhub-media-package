@@ -14,15 +14,21 @@ use MyListerHub\Media\Models\Image;
  * and either updates existing images or creates new ones based on the provided data.
  * It returns an associative array mapping image IDs to their order in the import.
  *
- * @method static array run(Collection $images)
+ * @method static array run(Collection|array $images)
  */
 class UpsertImages
 {
     use AsAction;
 
-    public function handle(Collection $images): array
+    public function handle(Collection|array $images): array
     {
-        return $images->reduce(static function (array $carry, array $imageData, int $index) {
+        return collect($images)->reduce(static function (array $carry, Image|array $imageData, int $index) {
+            if ($imageData instanceof Image) {
+                $carry[$imageData->getKey()] = ['order' => $index];
+
+                return $carry;
+            }
+
             if (strlen($imageData['source']) > 300) {
                 throw new InvalidArgumentException('Image source/url is too long.');
             }
