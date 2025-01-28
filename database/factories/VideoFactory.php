@@ -18,7 +18,7 @@ class VideoFactory extends Factory
             'name' => $this->faker->sentence(3),
             'path' => $this->faker->filePath(),
             'disk' => $this->faker->randomElement(['public', 's3']),
-            'url' => $this->faker->url()
+            'url' => $this->faker->url(),
         ];
     }
 }
