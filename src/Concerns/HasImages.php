@@ -2,6 +2,7 @@
 
 namespace MyListerHub\Media\Concerns;
 
+use Illuminate\Database\Eloquent\Relations\MorphOne;
 use Illuminate\Database\Eloquent\Relations\MorphToMany;
 use Illuminate\Http\UploadedFile;
 use Illuminate\Support\Collection;
@@ -30,6 +31,14 @@ trait HasImages
     public function images(): MorphToMany
     {
         return $this->morphToMany(Image::class, 'imageable')->withPivot(['order'])->orderByRaw('-`imageables`.`order` DESC');
+    }
+
+    /**
+     * Get the first image to be used as a thumbnail.
+     */
+    public function thumbnail(): MorphOne
+    {
+        return $this->morphOne(Image::class, 'imageable')->oldestOfMany();
     }
 
     /**
