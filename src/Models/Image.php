@@ -43,6 +43,22 @@ class Image extends Model
     }
 
     /**
+     * Create a new image from a file.
+     */
+    public static function createFromFile(UploadedFile|File $file, ?string $name = null, ?string $disk = null): static
+    {
+        return Media::createImageFromFile($file, $name, $disk);
+    }
+
+    /**
+     * Create a new image from an url.
+     */
+    public static function createFromUrl(string $url, ?string $name = null, bool $upload = false, ?string $disk = null): static
+    {
+        return Media::createImageFromUrl($url, $name, $upload, $disk);
+    }
+
+    /**
      * Get the name of the image.
      */
     protected function name(): Attribute
@@ -76,21 +92,5 @@ class Image extends Model
                 ? Media::getImageSize($attributes['source'])
                 : 0
         );
-    }
-
-    /**
-     * Create a new image from a file.
-     */
-    public static function createFromFile(UploadedFile|File $file, ?string $name = null, ?string $disk = null): static
-    {
-        return Media::createImageFromFile($file, $name, $disk);
-    }
-
-    /**
-     * Create a new image from an url.
-     */
-    public static function createFromUrl(string $url, ?string $name = null, bool $upload = false, ?string $disk = null): static
-    {
-        return Media::createImageFromUrl($url, $name, $upload, $disk);
     }
 }

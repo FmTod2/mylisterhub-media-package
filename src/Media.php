@@ -3,8 +3,8 @@
 namespace MyListerHub\Media;
 
 use Exception;
-use Illuminate\Http\UploadedFile;
 use Illuminate\Http\File;
+use Illuminate\Http\UploadedFile;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Str;
 use InvalidArgumentException;
@@ -12,58 +12,8 @@ use League\Flysystem\UnableToCheckFileExistence;
 use MyListerHub\Media\Models\Image;
 use Spatie\Image\Image as SpatieImage;
 
-class Media {
-
-    /**
-     * Get the url of an image.
-     */
-    public function getImageUrl(string $source): string
-    {
-        if (Str::isMatch('/http(s)?:\/\//', $source)) {
-            return $source;
-        }
-
-        $path = config('media.storage.images.path', 'media/images');
-        $disk = config('media.storage.images.disk', 'public');
-        $name = rawurlencode($source);
-
-        return Storage::disk($disk)->url("{$path}/{$name}");
-    }
-
-    /**
-     * Get the file size of an image.
-     */
-    public function getImageSize(string $source): int
-    {
-        if (Str::isMatch('/http(s)?:\/\//', $source)) {
-            $headers = get_headers($source, 1);
-
-            if (isset($headers['Content-Length'])) {
-                return (int) $headers['Content-Length'];
-            }
-
-            return 0;
-        }
-
-        $path = config('media.storage.images.path', 'media/images');
-        $disk = config('media.storage.images.disk', 'public');
-        $name = rawurlencode($source);
-
-        $filePath = "{$path}/{$name}";
-
-        try {
-            $exist = Storage::disk($disk)->exists($filePath);
-        } catch (UnableToCheckFileExistence) {
-            $exist = false;
-        }
-
-        if (! $exist) {
-            return 0;
-        }
-
-        return Storage::disk($disk)->size($filePath);
-    }
-
+class Media
+{
     /**
      * Create a new image from a file.
      */
@@ -137,5 +87,55 @@ class Media {
                 'height' => null,
             ]);
         }
+    }
+
+    /**
+     * Get the url of an image.
+     */
+    public function getImageUrl(string $source): string
+    {
+        if (Str::isMatch('/http(s)?:\/\//', $source)) {
+            return $source;
+        }
+
+        $path = config('media.storage.images.path', 'media/images');
+        $disk = config('media.storage.images.disk', 'public');
+        $name = rawurlencode($source);
+
+        return Storage::disk($disk)->url("{$path}/{$name}");
+    }
+
+    /**
+     * Get the file size of an image.
+     */
+    public function getImageSize(string $source): int
+    {
+        if (Str::isMatch('/http(s)?:\/\//', $source)) {
+            $headers = get_headers($source, 1);
+
+            if (isset($headers['Content-Length'])) {
+                return (int) $headers['Content-Length'];
+            }
+
+            return 0;
+        }
+
+        $path = config('media.storage.images.path', 'media/images');
+        $disk = config('media.storage.images.disk', 'public');
+        $name = rawurlencode($source);
+
+        $filePath = "{$path}/{$name}";
+
+        try {
+            $exist = Storage::disk($disk)->exists($filePath);
+        } catch (UnableToCheckFileExistence) {
+            $exist = false;
+        }
+
+        if (! $exist) {
+            return 0;
+        }
+
+        return Storage::disk($disk)->size($filePath);
     }
 }
